@@ -1,0 +1,13 @@
+version: '3'
+services:
+  db:
+    image: mariadb:10.6.10
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+        - ./src/config/initial_config.sql:/docker-entrypoint-initdb.d/1.sql
+    ports:
+        - $DB_PORT:3306
