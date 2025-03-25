@@ -15,5 +15,5 @@ export class UrlEntity extends BaseEntity {
 
   @ManyToOne(() => UsersEntity, (user) => user.urls)
   @JoinColumn({ name: 'user' })
-  user: UsersEntity;
+  user?: UsersEntity;
 }
