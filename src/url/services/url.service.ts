@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { UrlRepository } from '@src/url/repositories/url.repository';
 import { CreateUrlDto } from '@src/url/dtos/create-url.dto';
 import { generateRandomCode } from '@src/shared/helpers/shortUrl.helper';
@@ -7,6 +11,7 @@ import { ConfigService } from '@nestjs/config';
 import { decodeJwtFromRequest } from '@src/shared/helpers/token-decode.helper';
 import { UserRepository } from '@src/users/repositories/users.repository';
 import { UrlMapper } from '@src/url/mapper/url.mapper';
+import { isURL } from 'class-validator';
 
 @Injectable()
 export class UrlService {
@@ -56,14 +61,18 @@ export class UrlService {
     return this.urlRespository.deleteById(id);
   }
 
-  async updateUrlById(id: string) {
+  async updateUrlById(id: string, origin: string) {
     const url = await this.urlRespository.findById(id);
 
     if (!url) {
       throw new NotFoundException('Url not found!');
     }
 
-    url.shortKey = generateRandomCode(6);
+    if (!isURL(origin)) {
+      throw new BadRequestException('Origin needs to be an url address');
+    }
+
+    url.url = origin;
 
     const updatedUrl = await this.urlRespository.update(url);
 

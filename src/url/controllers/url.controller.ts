@@ -58,12 +58,15 @@ export class UrlController {
     return this.urlService.deleteUrlById(urlId);
   }
 
-  @Patch('urls/:urlId')
+  @Patch('urls/:urlId/origin/:origin')
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Buscar urls feitar pelo usuário' })
   @ApiOkResponse({ description: STATUS_CODES[HttpStatus.OK] })
   @ApiNotFoundResponse({ description: STATUS_CODES[HttpStatus.NOT_FOUND] })
-  async updateUserUrl(@Param('urlId', new ParseUUIDPipe()) urlId: string) {
-    return this.urlService.updateUrlById(urlId);
+  async updateUserUrl(
+    @Param('urlId', new ParseUUIDPipe()) urlId: string,
+    @Param('origin') origin: string,
+  ) {
+    return this.urlService.updateUrlById(urlId, origin);
   }
 }
