@@ -32,6 +32,16 @@ export class UserRepository {
     });
   }
 
+  async findUserAndUrlsId(id: string): Promise<UsersEntity | null> {
+    return this.userRepository.findOne({
+      where: {
+        id,
+      },
+      relationLoadStrategy: 'query',
+      relations: ['urls'],
+    });
+  }
+
   async createUser(userData: CreateUserDto): Promise<UsersEntity> {
     return this.userRepository.save(userData);
   }

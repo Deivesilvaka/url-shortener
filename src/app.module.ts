@@ -8,6 +8,7 @@ import { ThrottlerProvider } from '@src/shared/providers/throttler/throttler.pro
 import { UserModule } from '@src/users/users.module';
 import { AuthModule } from '@src/auth/auth.module';
 import { JWTProvider } from '@src/shared/providers/jwt/jwt.provider';
+import { UrlModule } from '@src/url/url.module';
 
 @Module({
   imports: [
@@ -21,10 +22,11 @@ import { JWTProvider } from '@src/shared/providers/jwt/jwt.provider';
     ThrottlerModule.forRoot([
       {
         ttl: 60000,
-        limit: 20,
+        limit: 30,
       },
     ]),
     UserModule,
+    UrlModule,
     AuthModule,
   ],
   controllers: [AppController],
