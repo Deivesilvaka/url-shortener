@@ -34,4 +34,4 @@ Ex: localhost:3000/api
 
 ## Observações
 
-Durante os testes, algumas vezes ocorreram de o numero de visitantes não alterar, caso isso aconteça, certificar de que o navegador não "chasheou" a chamada da api. Caso tenha feito, ele redireciona sem passar por ela.
+Durante os testes, algumas vezes ocorreram de o numero de visitantes não alterar, caso isso aconteça, certificar de que o navegador não "casheou" a chamada da api. Caso tenha feito, ele redireciona sem passar por ela.
