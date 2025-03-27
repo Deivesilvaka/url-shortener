@@ -39,5 +39,7 @@ Durante os testes, algumas vezes ocorreram de o numero de visitantes não altera
 ## Pontos interessantes de melhoria:
 
 1: Paginação nos links do usuário.
+
 2: Logout
+
 3: Refresh token
