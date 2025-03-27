@@ -11,12 +11,11 @@ export function decodeJwtFromRequest(req: Request) {
     return null;
   }
 
-  const [bearer, token] = authorizationHeader.split(' ');
-  bearer;
+  const splitedToken = authorizationHeader.split(' ');
 
   try {
     const secretKey = process.env.JWT_SECRET as string;
-    const decoded = jwt.verify(token, secretKey);
+    const decoded = jwt.verify(splitedToken[1], secretKey);
     return decoded;
   } catch (error) {
     throw new UnauthorizedException();
