@@ -12,6 +12,7 @@ export const dataSourceOptions = (
     username: configService.get<string>('DB_USERNAME'),
     password: configService.get<string>('DB_PASSWORD'),
     entities: ['dist/**/*.entity.{ts,js}'],
+    migrations: ['dist/src/shared/database/migrations/*.{ts,js}'],
     logging: true,
     migrationsTransactionMode: 'each',
   };
@@ -27,7 +28,7 @@ const options: DataSourceOptions = {
   password: process.env.DB_PASSWORD || 'root',
   database: process.env.DB_NAME || 'app_db',
   entities: ['dist/**/*.entity.js'],
-  migrations: ['dist/src/shared/database/migrations/*.{ts,js}'],
+  migrations: ['dist/src/shared/database/migrations/*.js'],
   synchronize: false,
   migrationsTransactionMode: 'each',
 };
